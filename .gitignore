@@ -1,0 +1,13 @@
+*.dll
+*.exe
+*.pdb
+*.cache
+*.targets
+*.props
+*.BuildWithSkipAnalyzers
+*.CopyComplete
+*.txt
+*.editorconfig
+*.suo
+.vs/
+runtimes/

@@ -1,0 +1,9 @@
+diff a/ConsoleApp9/ConsoleApp9/obj/ConsoleApp9.csproj.nuget.dgspec.json b/ConsoleApp9/ConsoleApp9/obj/ConsoleApp9.csproj.nuget.dgspec.json	(rejected hunks)
+@@ -64,7 +64,6 @@
+               "privateAssets": "all"
+             }
+           },
+-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.304\\RuntimeIdentifierGraph.json"
+           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.303\\RuntimeIdentifierGraph.json"
+         }
+       }

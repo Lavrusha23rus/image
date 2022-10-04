@@ -1,10 +1,48 @@
 ﻿namespace ConsoleApp9
 {
+    using System.Text;
     using System.Drawing;
     using System.Drawing.Imaging;
     internal class Program
     {
+        static int OnliNumbers()
+        {
+            StringBuilder @string = new StringBuilder();
 
+            while (true)
+            {
+                ConsoleKeyInfo keyPress = Console.ReadKey(true);
+                char input = keyPress.KeyChar;
+
+                if (keyPress.Key == ConsoleKey.Enter)
+
+                {
+                    if (string.IsNullOrEmpty(@string.ToString()))
+                    {
+                        Console.WriteLine("введите");
+                        continue;
+                    }
+                    else
+                    {
+                        int Numbers = Convert.ToInt32(@string.ToString());
+                        return Numbers;
+                    }
+
+
+                }
+                if (char.IsControl(input))
+                {
+                    continue;
+                }
+
+                if (char.IsDigit(input))
+                {
+                    @string.Append(input);
+                    Console.Write(input);
+                    continue;
+                }
+            }
+        }
         static void Main(string[] args)
 
         {
@@ -19,35 +57,13 @@
                 continue;
             }
 
-            Console.WriteLine("укажите высоту изображения: ");
-            var h = Console.ReadLine();
+            Console.WriteLine(" Укажите высоту изображения: ");
 
-            while (h != null)
-            {
+            var H = OnliNumbers();
 
-                Console.WriteLine("Укажите высоту мзображения: ");
-                h = Console.ReadLine();
-                continue;
-            }
+            Console.WriteLine("\nУкажите длину изображения: ");
+            var L = OnliNumbers();
 
-            int H = Convert.ToInt32(h);
-
-            Console.WriteLine("Укажите длину изображения: ");
-            var l = Console.ReadLine();
-            while (l != null)
-            {
-                Console.WriteLine("Укажите длину мзображения: ");
-                l = Console.ReadLine();
-                continue;
-            }
-            int L = Convert.ToInt32(l);
-
-            Console.WriteLine("Назовите новый фаил: ");
-            var name = Console.ReadLine();
-            while (!File.Exists(name))
-            {
-
-            }
             Console.WriteLine("Укажите формат сохраняемого фаила bmp, gif, exif, jpg, png или tiff.");
             string Format = Console.ReadLine().ToLower();
 
@@ -57,6 +73,16 @@
                 Format = Console.ReadLine().ToLower();
                 continue;
             }
+            Console.WriteLine("\nНазовите новый фаил: ");
+            var name = Console.ReadLine();
+                while (File.Exists($@"C:\Users\Алекс\Pictures\{name}.{Format}"))
+            {
+                Console.WriteLine("Фаил с таким именем уже существует, придумайте другое имя: ");
+                continue;
+            }
+
+
+           
             Image image = Image.FromFile(path);
             Bitmap image2 = new Bitmap(image, height: H, width: L);
 

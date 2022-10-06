@@ -5,9 +5,43 @@
     using System.Drawing.Imaging;
     internal class Program
     {
+        static string Name ( string format)
+        {
+            var name = Console.ReadLine();
+            while (File.Exists($@"C:\Users\Алекс\Pictures\{name}.{format}"))
+            {
+                Console.WriteLine("Фаил с таким именем уже существует, придумайте другое имя: ");
+                continue;
+            }
+            return name;
+        }
+        static string Format()
+        {
+            var Format = Console.ReadLine().ToLower();
+
+            while ((Format != "bmp") && (Format != "gif") && (Format != "exif") && (Format != "jpg") && (Format != "pnp") && (Format != "tiff"))
+            {
+                Console.WriteLine("неверный формат! Попробуйте снова: ");
+                Format = Console.ReadLine().ToLower();
+                continue;
+            }
+            return Format;
+        }
+        static string Path()
+        {
+            var path = Console.ReadLine();
+
+            while (!File.Exists(path))
+            {
+                Console.WriteLine("Фаила нет, проверьте правельность указаного пути и попробуйте снова: ");
+                path = Console.ReadLine();
+                continue;
+            }
+            return path;
+        }
         static int OnliNumbers()
         {
-            ///1
+
             StringBuilder @string = new StringBuilder();
 
             while (true)
@@ -20,7 +54,7 @@
                 {
                     if (string.IsNullOrEmpty(@string.ToString()))
                     {
-                        Console.WriteLine("введите");
+                        Console.WriteLine("вы ничего не ввели ");
                         continue;
                     }
                     else
@@ -47,47 +81,28 @@
         static void Main(string[] args)
 
         {
-
+            
             Console.WriteLine("введите путь фаила");
-            var path = Console.ReadLine();
-
-            while (!File.Exists(path))
-            {
-                Console.WriteLine("Фаила нет, проверьте правельность указаного пути и попробуйте снова: ");
-                path = Console.ReadLine();
-                continue;
-            }
+            var path = Path();
 
             Console.WriteLine(" Укажите высоту изображения: ");
-
-            var H = OnliNumbers();
+            var HeightImage = OnliNumbers();
 
             Console.WriteLine("\nУкажите длину изображения: ");
-            var L = OnliNumbers();
+            var WidthImage = OnliNumbers();
 
-            Console.WriteLine("Укажите формат сохраняемого фаила bmp, gif, exif, jpg, png или tiff.");
-            string Format = Console.ReadLine().ToLower();
+            Console.WriteLine("\nУкажите формат сохраняемого фаила bmp, gif, exif, jpg, png или tiff.");
+            var format = Format();
 
-            while ((Format != "bmp") && (Format != "gif") && (Format != "exif") && (Format != "jpg") && (Format != "pnp") && (Format != "tiff"))
-            {
-                Console.WriteLine("неверный формат! Попробуйте снова: ");
-                Format = Console.ReadLine().ToLower();
-                continue;
-            }
-            Console.WriteLine("\nНазовите новый фаил: ");
-            var name = Console.ReadLine();
-                while (File.Exists($@"C:\Users\Алекс\Pictures\{name}.{Format}"))
-            {
-                Console.WriteLine("Фаил с таким именем уже существует, придумайте другое имя: ");
-                continue;
-            }
+            Console.WriteLine("Назовите новый фаил: ");
+            var name = Name(format);
 
 
-           
+
             Image image = Image.FromFile(path);
-            Bitmap image2 = new Bitmap(image, height: H, width: L);
+            Bitmap image2 = new Bitmap(image, height: HeightImage, width: WidthImage);
 
-            switch (Format)
+            switch (format)
             {
                 case "bmp":
                     image2.Save($"{@"C:\Users\Алекс\Pictures\"} {name}{"."}{ImageFormat.Bmp}");
@@ -114,6 +129,9 @@
                     Console.WriteLine("Фаил сохранен C:\\Users\\Алекс\\Pictures");
                     break;
             }
+             
+            GC.Collect();
+            
             Console.ReadKey();
 
 

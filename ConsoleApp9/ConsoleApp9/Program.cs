@@ -7,6 +7,7 @@
     {
         static int OnliNumbers()
         {
+            ///1
             StringBuilder @string = new StringBuilder();
 
             while (true)

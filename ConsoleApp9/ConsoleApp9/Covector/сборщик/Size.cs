@@ -8,14 +8,26 @@ namespace ConsoleApp9.сборщик
 {
     internal class Size
     {
-        int HeightImageh;
-        int WidthImageh;
-        public int SiZe 
+        int size;
+
+        public int Content
+
         {
-            private get
+             get
             {
+                return size;
 
             }
+
+            set
+            {
+
+                size = value;
+            }
         }
+
+
     }
 }
+
+
